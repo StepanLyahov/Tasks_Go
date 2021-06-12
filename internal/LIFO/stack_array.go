@@ -2,12 +2,6 @@ package LIFO
 
 import "errors"
 
-type StackInt interface {
-	Push(int) error
-	Pop() (int, error)
-	Get() (int, error)
-}
-
 type ArrayStackInt struct {
 	buffer  []int
 	pointer int
