@@ -15,7 +15,7 @@ type ArrayStackInt struct {
 
 func NewArrayStackInt(size int) (StackInt, error) {
 	if size < 1 {
-		return ArrayStackInt{}, errors.New("size must be more 0")
+		return &ArrayStackInt{}, errors.New("size must be more 0")
 	}
 
 	buffer := make([]int, size)
@@ -25,10 +25,10 @@ func NewArrayStackInt(size int) (StackInt, error) {
 		pointer: -1,
 	}
 
-	return stack, nil
+	return &stack, nil
 }
 
-func (a ArrayStackInt) Push(i int) error {
+func (a *ArrayStackInt) Push(i int) error {
 	if a.pointer == len(a.buffer)-1 {
 		return errors.New("stack is full")
 	}
@@ -39,7 +39,7 @@ func (a ArrayStackInt) Push(i int) error {
 	return nil
 }
 
-func (a ArrayStackInt) Pop() (int, error) {
+func (a *ArrayStackInt) Pop() (int, error) {
 	if a.pointer == -1 {
 		return 0, errors.New("stack is void")
 	}
@@ -50,7 +50,7 @@ func (a ArrayStackInt) Pop() (int, error) {
 	return val, nil
 }
 
-func (a ArrayStackInt) Get() (int, error) {
+func (a *ArrayStackInt) Get() (int, error) {
 	if a.pointer == -1 {
 		return 0, errors.New("stack is void")
 	}
