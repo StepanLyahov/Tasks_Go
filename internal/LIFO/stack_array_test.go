@@ -35,24 +35,8 @@ func TestArrayStackInt_Push(t *testing.T) {
 	}
 }
 
-func TestArrayStackInt_Push_StackOverflow(t *testing.T) {
-	stack, err := NewArrayStackInt(1)
-
-	if err != nil {
-		t.Fatalf("Err must be nil. Err: %v", err)
-	}
-
-	err = stack.Push(1)
-	err = stack.Push(1)
-
-	if err == nil {
-		t.Fatalf("Err must be exist")
-	}
-	log.Print(err)
-}
-
 func TestArrayStackInt_Pop(t *testing.T) {
-	stack, err := NewArrayStackInt(10)
+	stack, err := NewArrayStackInt(1)
 
 	if err != nil {
 		t.Fatalf("Err must be nil. Err: %v", err)
@@ -61,6 +45,8 @@ func TestArrayStackInt_Pop(t *testing.T) {
 	val := 1
 
 	err = stack.Push(val)
+	err = stack.Push(val)
+	_, err = stack.Pop()
 	pop, err := stack.Pop()
 	if err != nil {
 		t.Fatalf("Poping error. Err: %v", err)
