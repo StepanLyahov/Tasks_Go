@@ -1,6 +1,6 @@
 package merge_sort
 
-func MergeSortConcurrency(arr []int) []int {
+func MergeSort(arr []int) []int {
 	size := len(arr)
 	if size == 0 {
 		return arr
@@ -12,8 +12,8 @@ func MergeSortConcurrency(arr []int) []int {
 
 	mid := size / 2
 
-	leftArr := MergeSortConcurrency(arr[:mid])
-	rightArr := MergeSortConcurrency(arr[mid:])
+	leftArr := MergeSort(arr[:mid])
+	rightArr := MergeSort(arr[mid:])
 
 	return merge(leftArr, rightArr)
 }

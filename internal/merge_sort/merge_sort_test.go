@@ -47,11 +47,11 @@ func TestMergeFuncSizesOne(t *testing.T) {
 	}
 }
 
-func TestMergeSortConcurrency(t *testing.T) {
+func TestMergeSort(t *testing.T) {
 	arr := []int{1, 5, 4, 3, 2, 1}
 	expected := []int{1, 1, 2, 3, 4, 5}
 
-	res := MergeSortConcurrency(arr)
+	res := MergeSort(arr)
 
 	if !reflect.DeepEqual(expected, res) {
 		t.Fatalf("Both arrays must be equels, but now Expected: %v, Res %v",
@@ -60,11 +60,11 @@ func TestMergeSortConcurrency(t *testing.T) {
 
 }
 
-func TestMergeSortConcurrencyZeroArr(t *testing.T) {
+func TestMergeSortZeroArr(t *testing.T) {
 	arr := make([]int, 0)
 	expected := make([]int, 0)
 
-	res := MergeSortConcurrency(arr)
+	res := MergeSort(arr)
 
 	if !reflect.DeepEqual(expected, res) {
 		t.Fatalf("Both arrays must be equels, but now Expected: %v, Res %v",
