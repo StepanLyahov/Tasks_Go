@@ -5,6 +5,13 @@ type Positions struct {
 	pos2 int
 }
 
+func NewPositions(pos1 int) *Positions {
+	return &Positions{
+		pos1: pos1,
+		pos2: -1,
+	}
+}
+
 func twoSum(nums []int, target int) []int {
 	res := make([]int, 2)
 
@@ -13,29 +20,30 @@ func twoSum(nums []int, target int) []int {
 	for pos, val := range nums {
 		p, ok := myMap[val]
 		if !ok {
-			myMap[val] = &Positions{pos1: pos}
+			myMap[val] = NewPositions(pos)
 		} else {
 			p.pos2 = pos
 		}
-
 	}
 
-	for i := 1; i <= target; i++ {
-		if i == target-i {
-			pCenter, okCenter := myMap[i]
-			if okCenter {
+	for _, val := range nums {
+		val2 := target - val
+
+		if val == val2 {
+			pCenter, okCenter := myMap[val]
+			if okCenter && pCenter.pos2 != -1 {
 				res[0] = pCenter.pos1
 				res[1] = pCenter.pos2
 				break
 			}
-		}
+		} else {
+			p1, ok1 := myMap[val]
+			p2, ok2 := myMap[val2]
 
-		p1, ok1 := myMap[i]
-		p2, ok2 := myMap[target-i]
-
-		if ok1 && ok2 {
-			res[0] = p1.pos1
-			res[1] = p2.pos1
+			if ok1 && ok2 {
+				res[0] = p1.pos1
+				res[1] = p2.pos1
+			}
 		}
 	}
 
